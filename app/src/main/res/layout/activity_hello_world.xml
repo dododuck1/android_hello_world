@@ -1,15 +1,82 @@
+<!-- res/layout/activity_hello_world.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HelloWorldActivity" >
+    android:padding="16dp"
+    tools:context=".HelloWorldActivity">
 
-    <TextView
+    <!-- App Icon -->
+    <ImageView
+        android:id="@+id/appIcon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/downloadButton"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_launcher" />
+
+    <!-- Download Button -->
+    <Button
+        android:id="@+id/downloadButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="ดาวน์โหลด"
+        android:textSize="25sp"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="12dp" />
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/downloadButton"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="32dp"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        tools:progress="45" />
+
+    <!-- Progress Text -->
+    <TextView
+        android:id="@+id/progressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressBar"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        android:textSize="25sp" />
+        android:layout_marginTop="8dp"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        tools:text="45%" />
+
+    <!-- Version Info -->
+    <TextView
+        android:id="@+id/versionInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
+        tools:text="เวอร์ชั่นปัจจุบัน: 1.0.0" />
+
+    <!-- Status Message -->
+    <TextView
+        android:id="@+id/statusMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:text="กำลังตรวจสอบการอัพเดท..." />
 
 </RelativeLayout>
