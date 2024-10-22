@@ -1,0 +1,52 @@
+name: Java CI
+
+on:
+  push:
+    branches:
+      - master # หรือชื่อ branch ที่คุณใช้
+  workflow_dispatch:  # เพื่อให้สามารถรันได้ด้วยตนเอง
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Ensures we get all branches for comparison
+
+      # Unzip MyApp.zip
+      - name: Unzip MyApp.zip
+        run: |
+          unzip -o MyApp.zip
+
+      # Set up JDKs
+      - name: Set up JDK 16
+        uses: actions/setup-java@v3
+        with:
+          java-version: '16'
+          distribution: 'temurin'
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      # Upload artifacts
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: myapp-artifact
+          path: out/app-debug.*
+
